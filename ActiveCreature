@@ -1,0 +1,18 @@
+public abstract class ActiveCreature {
+  
+  private BlockingQueue<Runnable> requests;
+  private String name;
+  private Thread thread;
+  private int status;
+  public void eat() throws InterruptedException {
+    requests.put(() -> logger.info("{} is eating!", name()));
+ }
+
+  public void roam() throws InterruptedException {
+    requests.put(() -> logger.info("{} is roaming!", name()));
+  }
+  public void kill(int status) {
+    this.status = status;
+    this.thread.interrupt();
+  }
+}
