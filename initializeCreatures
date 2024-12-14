@@ -1,0 +1,7 @@
+private void initializeCreatures(List<ActiveCreature> creatures) {
+  for (int i = 0; i < NUM_CREATURES; i++) {
+    creatures.add(new Orc(Orc.class.getSimpleName() + i));
+    creatures.get(i).eat();
+    creatures.get(i).roam();
+  }
+}
