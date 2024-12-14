@@ -1,0 +1,11 @@
+public class OrcKing implements King {
+  static final String DESCRIPTION = "This is the orc king!";
+  
+  private String armyDetails = "Leads the orc army";
+  private String weaponDetails = "Wields a massive axe";
+
+  @Override
+  public String getDescription() {
+    return DESCRIPTION + " " + armyDetails + " " + weaponDetails;
+  }
+}
