@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Payments>
+@{
+    ViewData["Title"] = "Payments";
+}
+
+<h2>Payments</h2>
+<a asp-action="Create">Add New Payment</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Reservation ID</th>
+            <th>Amount</th>
+            <th>Payment Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var payment in Model)
+        {
+                <tr>
+                    <td>@payment.ReservationID</td>
+                    <td>@payment.Amount</td>
+                    <td>@payment.PaymentDate.ToShortDateString()</td>
+                    <td>@payment.PaymentStatus</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@payment.PaymentID">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@payment.PaymentID">Delete</a>
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>

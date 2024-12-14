@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Reservations>
+@{
+    ViewData["Title"] = "Reservations";
+}
+
+<h2>Reservations</h2>
+<a asp-action="Create">Create New Reservation</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Guest ID</th>
+            <th>Room ID</th>
+            <th>Check-In</th>
+            <th>Check-Out</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reservation in Model)
+        {
+            <tr>
+                <td>@reservation.GuestID</td>
+                <td>@reservation.RoomID</td>
+                <td>@reservation.CheckIn.ToShortDateString()</td>
+                <td>@reservation.CheckOut.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@reservation.ReservationID">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@reservation.ReservationID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

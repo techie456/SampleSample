@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Rooms>
+@{
+    ViewData["Title"] = "Rooms";
+}
+
+<h2>Rooms</h2>
+<a asp-action="Create">Create New Room</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Room Type</th>
+            <th>Rate</th>
+            <th>Availability Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var room in Model)
+        {
+                <tr>
+                    <td>@room.RoomType</td>
+                    <td>@room.Rate</td>
+                    <td>@room.AvailabilityStatus</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@room.RoomID">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@room.RoomID">Delete</a>
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,63 @@
+﻿@model Payments
+@{
+    ViewData["Title"] = "Create Payment";
+}
+@if (TempData["PaymentSuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["PaymentSuccessMessage"]
+    </div>
+}
+<h2>Create Payment</h2>
+
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Reservation ID</th>
+            <th>Guest Name</th>
+            <th>Room Type</th>
+            <th>Price</th>
+            <th>Check-In Date</th>
+            <th>Check-Out Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reservation in ViewBag.AllReservations)
+        {
+            <tr>
+                <td>@reservation.ReservationID</td>
+                <td>@reservation.Guest.Name</td>
+                <td>@reservation.Room.RoomType</td>
+                <td>@reservation.Room.Rate</td>
+                <td>@reservation.CheckIn.ToString("yyyy-MM-dd")</td>
+                <td>@reservation.CheckOut.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@reservation.ReservationID">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@reservation.ReservationID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<form asp-action="Create">
+    <div>
+        <label>Reservation ID</label>
+        <input asp-for="ReservationID" />
+    </div>
+    <div>
+        <label>Amount</label>
+        <input asp-for="Amount" />
+    </div>
+    <div>
+        <label>Payment Date</label>
+        <input asp-for="PaymentDate" type="date" />
+    </div>
+    <div>
+        <label>Status</label>
+        <input asp-for="PaymentStatus" />
+    </div>
+    <button type="submit">Save</button>
+    <a asp-controller="Guests" asp-action="Index" class="btn btn-secondary">Back</a>
+</form>

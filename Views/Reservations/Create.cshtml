@@ -1,0 +1,57 @@
+﻿@model Reservations
+@{
+    ViewData["Title"] = "Create Reservation";
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+<h2>Create Reservation</h2>
+
+<form asp-action="Create">
+    <div>
+
+       <h3>All Room Details</h3>
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Room ID</th>
+            <th>Room Type</th>
+            <th>Rate</th>
+            <th>Availability Status</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var room in ViewBag.AllRooms)
+        {
+            <tr>
+                <td>@room.RoomID</td>
+                <td>@room.RoomType</td>
+                <td>$@room.Rate</td>
+                <td>@room.AvailabilityStatus</td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+        <label>Guest ID</label>
+        <input asp-for="GuestID" />
+    </div>
+    <div>
+        <label>Room ID</label>
+        <input asp-for="RoomID" />
+    </div>
+    <div>
+        <label>Check-In</label>
+        <input asp-for="CheckIn" type="date" />
+    </div>
+    <div>
+        <label>Check-Out</label>
+        <input asp-for="CheckOut" type="date" />
+    </div>
+    <button type="submit">Save</button>
+    <a asp-controller="Guests" asp-action="Index" class="btn btn-secondary">Back</a>
+</form>

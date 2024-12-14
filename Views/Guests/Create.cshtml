@@ -1,0 +1,23 @@
+﻿@model Guests
+@{
+    ViewData["Title"] = "Create Guest";
+}
+
+<h2>Create Guest</h2>
+
+<form asp-action="Create">
+    <div>
+        <label>Name</label>
+        <input asp-for="Name" />
+    </div>
+    <div>
+        <label>Contact Info</label>
+        <input asp-for="ContactInfo" />
+    </div>
+    <div>
+        <label>Address</label>
+        <input asp-for="Address" />
+    </div>
+    <button type="submit">Save</button>
+    <a asp-controller="Guests" asp-action="Index" class="btn btn-secondary">Back</a>
+</form>

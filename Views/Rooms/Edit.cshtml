@@ -1,0 +1,23 @@
+﻿@model Rooms
+@{
+    ViewData["Title"] = "Edit Room";
+}
+
+<h2>Edit Room</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="RoomID" />
+    <div>
+        <label>Room Type</label>
+        <input asp-for="RoomType" />
+    </div>
+    <div>
+        <label>Rate</label>
+        <input asp-for="Rate" />
+    </div>
+    <div>
+        <label>Availability Status</label>
+        <input asp-for="AvailabilityStatus" />
+    </div>
+    <button type="submit">Save</button>
+</form>

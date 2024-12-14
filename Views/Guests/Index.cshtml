@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Guests>
+@{
+    ViewData["Title"] = "Guests";
+}
+
+<h2>Guests</h2>
+
+
+<!-- Links to Create Rooms, Reservations, and Payments -->
+<div class="mt-3">
+    <a asp-action="Create">Create New Guest</a><br/>
+    <a asp-controller="Rooms" asp-action="Create">Create New Room</a><br/>
+    <a asp-controller="Reservations" asp-action="Create">Create New Reservation</a><br/>
+    <a asp-controller="Reservations" asp-action="GetCreateReservation">Book Reservation</a><br/>
+    <a asp-controller="Payments" asp-action="Create"> Create New Payment</a>
+</div>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Contact Info</th>
+            <th>Address</th>
+            <th>Assigned RoomType</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var guest in Model)
+        {
+            <tr>
+                <td>@guest.Name</td>
+                <td>@guest.ContactInfo</td>
+                <td>@guest.Address</td>
+                <td>
+                    @if (guest.Reservations?.Any() == true)
+                    {
+                        @guest.Reservations.Last().Room.RoomType
+                    }
+                    else
+                    {
+                        <span>No Room Assigned</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@guest.GuestID">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@guest.GuestID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

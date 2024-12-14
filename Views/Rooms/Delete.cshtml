@@ -1,0 +1,18 @@
+﻿@model Rooms
+@{
+    ViewData["Title"] = "Delete Room";
+}
+
+<h2>Delete Room</h2>
+
+<div>
+    <h3>Are you sure you want to delete this room?</h3>
+    <div>Room Type: @Model.RoomType</div>
+    <div>Rate: @Model.Rate</div>
+    <div>Availability Status: @Model.AvailabilityStatus</div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="RoomID" />
+        <button type="submit">Delete</button>
+        <a asp-action="Index">Cancel</a>
+    </form>
+</div>
