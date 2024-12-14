@@ -1,0 +1,5 @@
+public void roam() throws InterruptedException {
+  requests.put(() ->
+      logger.info("{} has started to roam in the wastelands.", name())
+  );
+}
